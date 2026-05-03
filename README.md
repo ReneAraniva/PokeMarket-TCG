@@ -2,6 +2,10 @@
 
 Plataforma de coleccionismo de cartas Pokémon TCG con catálogo real, sistema de inventario, wishlist y pago con PayPal Sandbox.
 
+## Demo en vivo
+
+https://poketcg-market.netlify.app/
+
 ---
 
 ## Tecnologías
@@ -80,9 +84,6 @@ pnpm install
 # 2. Iniciar servidor de desarrollo
 pnpm dev
 ```
-
-La app estará disponible en `http://localhost:5173`
-
 ### Build de producción
 
 ```bash
@@ -90,6 +91,13 @@ pnpm build
 ```
 
 ---
+
+## Enlace de la app en Netlify
+
+https://poketcg-market.netlify.app/
+
+---
+
 
 ## Credenciales de prueba — PayPal Sandbox
 
