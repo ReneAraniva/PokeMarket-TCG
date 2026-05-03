@@ -168,10 +168,10 @@ export function CardsPage() {
   return (
     <div className="min-h-screen bg-[var(--cream)]">
       {/* Header */}
-      <div className="bg-gradient-to-br from-[var(--wine-red)] via-[var(--deep-red)] to-[#8B2635] py-12 px-4">
+      <div className="bg-gradient-to-br from-[var(--wine-red)] via-[var(--deep-red)] to-[#8B2635] py-8 md:py-12 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1
-            className="text-4xl md:text-5xl font-bold text-white mb-3"
+            className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-3"
             style={{ fontFamily: "'Cinzel', serif" }}
           >
             Explorar Cartas

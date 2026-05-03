@@ -63,7 +63,7 @@ export function CardDetailPage() {
           <div className="grid md:grid-cols-2">
             {/* Left: Image */}
             <div
-              className="relative p-8 flex items-center justify-center min-h-[480px]"
+              className="relative p-4 md:p-8 flex items-center justify-center min-h-[240px] md:min-h-[480px]"
               style={{
                 background: `linear-gradient(135deg, ${rarityColor}18, ${rarityColor}06)`,
               }}
@@ -89,7 +89,7 @@ export function CardDetailPage() {
                 <img
                   src={card.image}
                   alt={card.name}
-                  className="relative w-72 rounded-2xl shadow-2xl"
+                  className="relative w-44 md:w-72 rounded-2xl shadow-2xl"
                   style={
                     isLegendary
                       ? { boxShadow: '0 0 25px rgba(255,215,0,0.35)' }
@@ -115,10 +115,10 @@ export function CardDetailPage() {
             </div>
 
             {/* Right: Details */}
-            <div className="p-8 space-y-6">
+            <div className="p-4 md:p-8 space-y-4 md:space-y-6">
               <div>
                 <h1
-                  className="text-3xl font-bold text-[var(--charcoal)] mb-3"
+                  className="text-xl md:text-3xl font-bold text-[var(--charcoal)] mb-3"
                   style={{ fontFamily: "'Cinzel', serif" }}
                 >
                   {card.name}
@@ -146,7 +146,7 @@ export function CardDetailPage() {
               {/* Price */}
               <div className="bg-gradient-to-br from-[var(--wine-red)] to-[var(--deep-red)] rounded-2xl p-6 text-white">
                 <p className="text-white/70 text-sm mb-1">Precio de mercado</p>
-                <p className="text-4xl font-bold">
+                <p className="text-2xl md:text-4xl font-bold">
                   ${card.price.toLocaleString()}
                 </p>
                 <p className="text-white/60 text-xs mt-1">USD · Autenticidad garantizada</p>

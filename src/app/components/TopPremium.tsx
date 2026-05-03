@@ -15,12 +15,12 @@ const BADGE: Record<PriceCategory, string> = {
 
 function SkeletonCard() {
   return (
-    <div className="flex-shrink-0 w-72 bg-white rounded-2xl overflow-hidden animate-pulse shadow-md">
+    <div className="flex-shrink-0 w-44 sm:w-56 md:w-72 bg-white rounded-2xl overflow-hidden animate-pulse shadow-md">
       <div className="aspect-[3/4] bg-gray-200" />
-      <div className="p-4 space-y-3">
-        <div className="h-4 bg-gray-200 rounded w-3/4" />
+      <div className="p-3 space-y-2">
+        <div className="h-3 bg-gray-200 rounded w-3/4" />
         <div className="h-3 bg-gray-100 rounded w-1/2" />
-        <div className="h-8 bg-gray-200 rounded-xl" />
+        <div className="h-7 bg-gray-200 rounded-xl" />
       </div>
     </div>
   );
@@ -41,7 +41,7 @@ export function TopPremium() {
   };
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-br from-gray-50 to-white">
+    <section className="py-10 md:py-16 px-4 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-3">
@@ -50,12 +50,12 @@ export function TopPremium() {
             </div>
             <div>
               <h2
-                className="text-3xl font-bold text-[var(--charcoal)]"
+                className="text-xl sm:text-2xl md:text-3xl font-bold text-[var(--charcoal)]"
                 style={{ fontFamily: "'Cinzel', serif" }}
               >
                 Top 10 Premium
               </h2>
-              <p className="text-gray-500">Las cartas más valiosas del mercado</p>
+              <p className="text-xs sm:text-sm text-gray-500">Las cartas más valiosas del mercado</p>
             </div>
           </div>
 
@@ -89,7 +89,7 @@ export function TopPremium() {
           {loading
             ? Array.from({ length: 5 }).map((_, i) => <SkeletonCard key={i} />)
             : cards.map((card) => (
-                <div key={card.id} className="flex-shrink-0 w-72">
+                <div key={card.id} className="flex-shrink-0 w-44 sm:w-56 md:w-72">
                   <PokemonCard
                     id={card.id}
                     name={card.name}

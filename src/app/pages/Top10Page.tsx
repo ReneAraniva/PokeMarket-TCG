@@ -140,7 +140,7 @@ export function Top10Page() {
   return (
     <div className="min-h-screen bg-[var(--cream)]">
       {/* Header */}
-      <div className="bg-gradient-to-br from-[var(--charcoal)] via-[#2a1a1f] to-[var(--wine-red)] py-16 px-4 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[var(--charcoal)] via-[#2a1a1f] to-[var(--wine-red)] py-10 md:py-16 px-4 relative overflow-hidden">
         <div className="absolute inset-0 opacity-25 pointer-events-none">
           <div className="absolute top-10 left-16 w-48 h-48 bg-[var(--gold)] rounded-full blur-3xl" />
           <div className="absolute bottom-8 right-20 w-36 h-36 bg-[var(--gold)] rounded-full blur-3xl" />
@@ -150,7 +150,7 @@ export function Top10Page() {
             <Crown className="w-8 h-8 text-white" />
           </div>
           <h1
-            className="text-5xl font-bold text-white mb-3"
+            className="text-3xl md:text-5xl font-bold text-white mb-3"
             style={{ fontFamily: "'Cinzel', serif" }}
           >
             Top 10 Premium

@@ -75,34 +75,34 @@ function RaritySection({
 }) {
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-5 md:mb-8">
         <div className="flex items-center space-x-3">
           <div
-            className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+            className="w-9 h-9 md:w-12 md:h-12 rounded-xl flex items-center justify-center flex-shrink-0"
             style={{ background: config.iconBg }}
           >
             {config.icon}
           </div>
           <div>
             <h2
-              className="text-3xl font-bold text-[var(--charcoal)]"
+              className="text-lg sm:text-2xl md:text-3xl font-bold text-[var(--charcoal)]"
               style={{ fontFamily: "'Cinzel', serif" }}
             >
               {config.title}
             </h2>
-            <p className="text-gray-500">{config.subtitle}</p>
+            <p className="text-xs sm:text-sm text-gray-500">{config.subtitle}</p>
           </div>
         </div>
         <Link
           to={`/cards?rarity=${config.category}`}
-          className="hidden sm:flex items-center gap-1 text-sm font-semibold px-4 py-2 rounded-lg border border-gray-200 hover:border-[var(--wine-red)] hover:text-[var(--wine-red)] transition-colors"
+          className="text-xs sm:text-sm font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg border border-gray-200 hover:border-[var(--wine-red)] hover:text-[var(--wine-red)] transition-colors"
           style={{ color: categoryColors[config.category] }}
         >
           Ver todas →
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
         {cards.map((card) => (
           <PokemonCard
             key={card.id}
@@ -125,7 +125,7 @@ export function RarityCollections() {
   const { byCategory, loading } = useHomeCards(4);
 
   return (
-    <div className="py-16 px-4 space-y-16">
+    <div className="py-10 md:py-16 px-4 space-y-12 md:space-y-16">
       {SECTIONS.map((section) => {
         const cards = byCategory[section.category] ?? [];
 
@@ -144,7 +144,7 @@ export function RarityCollections() {
                   <div className="h-4 w-64 bg-gray-100 rounded animate-pulse" />
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
                 {Array.from({ length: 4 }).map((_, i) => (
                   <SkeletonCard key={i} />
                 ))}

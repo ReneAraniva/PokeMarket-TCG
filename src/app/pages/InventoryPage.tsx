@@ -123,47 +123,50 @@ export function InventoryPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white py-8 md:py-12 px-4">
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Header */}
         <div>
-          <h1 className="text-4xl font-bold text-[var(--charcoal)] mb-1" style={{ fontFamily: "'Cinzel', serif" }}>
+          <h1 className="text-2xl md:text-4xl font-bold text-[var(--charcoal)] mb-1" style={{ fontFamily: "'Cinzel', serif" }}>
             Mi Inventario
           </h1>
           <p className="text-gray-500">Tu colección personal de cartas PokéTCG</p>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-[var(--wine-red)] to-[var(--deep-red)] rounded-xl flex items-center justify-center">
-                <Package className="w-6 h-6 text-white" />
+        <div className="grid grid-cols-3 gap-3 md:gap-6">
+          {/* Cartas */}
+          <div className="bg-white rounded-xl md:rounded-2xl p-3 md:p-6 shadow-lg border border-gray-100">
+            <div className="flex items-center justify-between mb-2 md:mb-4">
+              <div className="w-8 h-8 md:w-12 md:h-12 bg-gradient-to-br from-[var(--wine-red)] to-[var(--deep-red)] rounded-lg md:rounded-xl flex items-center justify-center">
+                <Package className="w-4 h-4 md:w-6 md:h-6 text-white" />
               </div>
-              <TrendingUp className="w-5 h-5 text-green-500" />
+              <TrendingUp className="w-3.5 h-3.5 md:w-5 md:h-5 text-green-500" />
             </div>
-            <h3 className="text-3xl font-bold text-[var(--charcoal)] mb-1">{inventory.length}</h3>
-            <p className="text-gray-500">Cartas adquiridas</p>
+            <h3 className="text-xl md:text-3xl font-bold text-[var(--charcoal)] mb-0.5">{inventory.length}</h3>
+            <p className="text-xs md:text-sm text-gray-500 leading-tight">Cartas<br className="md:hidden" /> adquiridas</p>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl flex items-center justify-center">
-                <Heart className="w-6 h-6 text-white" />
+          {/* Wishlist */}
+          <div className="bg-white rounded-xl md:rounded-2xl p-3 md:p-6 shadow-lg border border-gray-100">
+            <div className="flex items-center justify-between mb-2 md:mb-4">
+              <div className="w-8 h-8 md:w-12 md:h-12 bg-gradient-to-br from-pink-400 to-pink-600 rounded-lg md:rounded-xl flex items-center justify-center">
+                <Heart className="w-4 h-4 md:w-6 md:h-6 text-white" />
               </div>
             </div>
-            <h3 className="text-3xl font-bold text-[var(--charcoal)] mb-1">{wishlistIds.length}</h3>
-            <p className="text-gray-500">En wishlist</p>
+            <h3 className="text-xl md:text-3xl font-bold text-[var(--charcoal)] mb-0.5">{wishlistIds.length}</h3>
+            <p className="text-xs md:text-sm text-gray-500">En wishlist</p>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-[var(--gold)] to-yellow-300 rounded-xl flex items-center justify-center">
-                <DollarSign className="w-6 h-6 text-white" />
+          {/* Total */}
+          <div className="bg-white rounded-xl md:rounded-2xl p-3 md:p-6 shadow-lg border border-gray-100">
+            <div className="flex items-center justify-between mb-2 md:mb-4">
+              <div className="w-8 h-8 md:w-12 md:h-12 bg-gradient-to-br from-[var(--gold)] to-yellow-300 rounded-lg md:rounded-xl flex items-center justify-center">
+                <DollarSign className="w-4 h-4 md:w-6 md:h-6 text-white" />
               </div>
             </div>
-            <h3 className="text-3xl font-bold text-[var(--charcoal)] mb-1">${total.toLocaleString()}</h3>
-            <p className="text-gray-500">Total invertido</p>
+            <h3 className="text-base md:text-3xl font-bold text-[var(--charcoal)] mb-0.5 leading-tight">${total.toLocaleString()}</h3>
+            <p className="text-xs md:text-sm text-gray-500 leading-tight">Total<br className="md:hidden" /> invertido</p>
           </div>
         </div>
 
