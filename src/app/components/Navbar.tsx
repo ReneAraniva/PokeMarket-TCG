@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router';
-import { User, Crown, Menu, X } from 'lucide-react';
+import { User, Crown, Menu, X, Home, Compass } from 'lucide-react';
 import { getCart } from '../../utils/storage';
 import { useState, useEffect } from 'react';
 
@@ -41,10 +41,16 @@ export function Navbar() {
             </Link>
 
             {/* Desktop nav links */}
-            <div className="hidden md:flex items-center space-x-6">
-              <Link to="/" className={linkClass('/')}>Inicio</Link>
-              <Link to="/cards" className={linkClass('/cards')}>Explorar</Link>
-              <Link to="/top10" className={`${linkClass('/top10')} flex items-center gap-1`}>
+            <div className="hidden md:flex items-center space-x-1">
+              <Link to="/" className={`${linkClass('/')} flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors`}>
+                <Home className="w-4 h-4" />
+                Inicio
+              </Link>
+              <Link to="/cards" className={`${linkClass('/cards')} flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors`}>
+                <Compass className="w-4 h-4" />
+                Explorar
+              </Link>
+              <Link to="/top10" className={`${linkClass('/top10')} flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors`}>
                 <Crown className="w-4 h-4 text-[var(--gold)]" />
                 Top 10
               </Link>
@@ -97,9 +103,11 @@ export function Navbar() {
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-1 shadow-lg">
           <Link to="/" className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 font-medium text-[var(--charcoal)] transition-colors">
+            <Home className="w-4 h-4 text-gray-400" />
             Inicio
           </Link>
           <Link to="/cards" className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 font-medium text-[var(--charcoal)] transition-colors">
+            <Compass className="w-4 h-4 text-gray-400" />
             Explorar Cartas
           </Link>
           <Link to="/top10" className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-50 font-medium text-[var(--charcoal)] transition-colors">

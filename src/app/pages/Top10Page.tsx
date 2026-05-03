@@ -89,33 +89,39 @@ function TopCard({ card, rank }: { card: TCGCard; rank: number }) {
       </div>
 
       {/* Info */}
-      <div className="p-4 space-y-2">
+      <div className="p-2 sm:p-3 md:p-4 space-y-1.5">
         {badges.length > 0 && (
           <div className="flex flex-wrap gap-1">
-            {badges.map((b) => (
-              <span
-                key={b}
-                className="text-xs font-semibold text-[var(--gold)] bg-yellow-50 px-2 py-0.5 rounded-full border border-yellow-200"
-              >
-                {b}
+            {isLegendary ? (
+              <span className="text-xs font-semibold text-[var(--gold)] bg-yellow-50 px-1.5 py-0.5 rounded-full border border-yellow-200 truncate max-w-full">
+                👑 Legendaria
               </span>
-            ))}
+            ) : (
+              badges.map((b) => (
+                <span
+                  key={b}
+                  className="text-xs font-semibold text-[var(--gold)] bg-yellow-50 px-1.5 py-0.5 rounded-full border border-yellow-200"
+                >
+                  {b}
+                </span>
+              ))
+            )}
           </div>
         )}
         <h3
-          className="font-bold text-[var(--charcoal)] line-clamp-1 text-sm"
+          className="font-bold text-[var(--charcoal)] line-clamp-1 text-xs sm:text-sm"
           style={{ fontFamily: "'Cinzel', serif" }}
         >
           {card.name}
         </h3>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:justify-between">
           <span
-            className="px-2 py-0.5 rounded text-xs font-semibold text-white"
+            className="px-1.5 py-0.5 rounded text-xs font-semibold text-white w-fit"
             style={{ backgroundColor: rarityColor }}
           >
             {categoryLabels[card.priceCategory]}
           </span>
-          <span className="text-base font-bold text-[var(--wine-red)]">
+          <span className="text-xs sm:text-sm font-bold text-[var(--wine-red)]">
             ${card.price.toLocaleString()}
           </span>
         </div>
@@ -125,7 +131,7 @@ function TopCard({ card, rank }: { card: TCGCard; rank: number }) {
             navigate(`/cards/${card.id}`);
           }}
           disabled={purchased}
-          className="w-full bg-gradient-to-r from-[var(--wine-red)] to-[var(--deep-red)] text-white py-2 rounded-xl text-xs font-semibold hover:shadow-lg transition-all disabled:opacity-60"
+          className="w-full bg-gradient-to-r from-[var(--wine-red)] to-[var(--deep-red)] text-white py-1.5 sm:py-2 rounded-xl text-xs font-semibold hover:shadow-lg transition-all disabled:opacity-60"
         >
           {purchased ? '✓ Adquirida' : 'Ver detalle'}
         </button>
@@ -180,7 +186,7 @@ export function Top10Page() {
             <p className="text-gray-500">Cargando cartas premium...</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
             {cards.map((card, i) => (
               <TopCard key={card.id} card={card} rank={i + 1} />
             ))}

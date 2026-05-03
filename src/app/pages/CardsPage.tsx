@@ -32,7 +32,7 @@ interface CardItemProps {
   types?: string[];
 }
 
-function CardItem({ id, name, image, priceCategory, price, types }: CardItemProps) {
+function CardItem({ id, name, image, priceCategory, price }: CardItemProps) {
   const navigate = useNavigate();
   const [wishlisted, setWishlisted] = useState(() => isWishlisted(id));
   const purchased = isPurchased(id);
@@ -58,10 +58,10 @@ function CardItem({ id, name, image, priceCategory, price, types }: CardItemProp
           e.stopPropagation();
           setWishlisted(toggleWishlist(id));
         }}
-        className="absolute top-3 right-3 z-10 w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md"
+        className="absolute top-2 right-2 z-10 w-7 h-7 sm:w-8 sm:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md"
       >
         <Heart
-          className="w-5 h-5"
+          className="w-3.5 h-3.5 sm:w-4 sm:h-4"
           fill={wishlisted ? '#D72638' : 'none'}
           stroke={wishlisted ? '#D72638' : '#1E1E1E'}
         />
@@ -92,21 +92,18 @@ function CardItem({ id, name, image, priceCategory, price, types }: CardItemProp
       </div>
 
       {/* Info */}
-      <div className="p-3 space-y-2">
-        <h3 className="font-semibold text-sm text-[var(--charcoal)] line-clamp-1">
+      <div className="p-2 sm:p-3 space-y-1.5">
+        <h3 className="font-semibold text-xs sm:text-sm text-[var(--charcoal)] line-clamp-1">
           {name}
         </h3>
-        {types && types.length > 0 && (
-          <p className="text-xs text-gray-500">{types.join(' · ')}</p>
-        )}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-1">
           <span
-            className="text-xs font-semibold text-white px-2 py-0.5 rounded"
+            className="text-xs font-semibold text-white px-1.5 py-0.5 rounded truncate"
             style={{ backgroundColor: rarityColor }}
           >
             {categoryLabels[priceCategory]}
           </span>
-          <span className="font-bold text-[var(--wine-red)] text-sm">
+          <span className="font-bold text-[var(--wine-red)] text-xs sm:text-sm flex-shrink-0">
             ${price.toLocaleString()}
           </span>
         </div>
@@ -116,7 +113,7 @@ function CardItem({ id, name, image, priceCategory, price, types }: CardItemProp
             navigate(`/cards/${id}`);
           }}
           disabled={purchased}
-          className="w-full bg-gradient-to-r from-[var(--wine-red)] to-[var(--deep-red)] text-white py-2 rounded-xl text-xs font-semibold hover:shadow-md transition-all disabled:opacity-60"
+          className="w-full bg-gradient-to-r from-[var(--wine-red)] to-[var(--deep-red)] text-white py-1.5 sm:py-2 rounded-xl text-xs font-semibold hover:shadow-md transition-all disabled:opacity-60"
         >
           {purchased ? '✓ Adquirida' : 'Ver detalle'}
         </button>
@@ -183,62 +180,68 @@ export function CardsPage() {
       </div>
 
       {/* Filters bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-10 mb-8">
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 -mt-5 relative z-10 mb-6">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-3 sm:p-5">
           <form
-            className="flex flex-col md:flex-row gap-4"
+            className="flex flex-col gap-3"
             onSubmit={(e) => { e.preventDefault(); handleSearch(); }}
           >
-            <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                value={inputSearch}
-                onChange={(e) => setInputSearch(e.target.value)}
-                placeholder="Buscar carta por nombre..."
-                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--wine-red)] focus:border-transparent transition-all"
-              />
-            </div>
-            <div className="flex gap-3 flex-wrap">
+            {/* Search row */}
+            <div className="flex gap-2">
+              <div className="flex-1 relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  value={inputSearch}
+                  onChange={(e) => setInputSearch(e.target.value)}
+                  placeholder="Buscar carta por nombre..."
+                  className="w-full pl-9 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--wine-red)] focus:border-transparent transition-all"
+                />
+              </div>
               <button
                 type="submit"
-                className="px-5 py-3 bg-gradient-to-r from-[var(--wine-red)] to-[var(--deep-red)] text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-2"
+                className="px-4 py-2.5 bg-gradient-to-r from-[var(--wine-red)] to-[var(--deep-red)] text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-1.5 flex-shrink-0 text-sm"
               >
                 <Search className="w-4 h-4" />
-                <span>Buscar</span>
+                <span className="hidden sm:inline">Buscar</span>
               </button>
-              <select
-                value={rarity}
-                onChange={(e) =>
-                  setRarity(e.target.value as PriceCategory | '')
-                }
-                className="px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--wine-red)] cursor-pointer min-w-[150px]"
-              >
-                {RARITIES.map((r) => (
-                  <option key={r.value} value={r.value}>
-                    {r.label}
-                  </option>
-                ))}
-              </select>
-              <select
-                value={priceIdx}
-                onChange={(e) => setPriceIdx(Number(e.target.value))}
-                className="px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--wine-red)] cursor-pointer min-w-[160px]"
-              >
-                {PRICE_RANGES.map((p, i) => (
-                  <option key={i} value={i}>
-                    {p.label}
-                  </option>
-                ))}
-              </select>
               <button
                 type="button"
                 onClick={handleClear}
-                className="px-4 py-3 bg-gray-100 text-gray-600 rounded-xl hover:bg-gray-200 transition-colors flex items-center space-x-2"
+                className="px-3 py-2.5 bg-gray-100 text-gray-500 rounded-xl hover:bg-gray-200 transition-colors flex items-center gap-1.5 flex-shrink-0 text-sm"
+                title="Limpiar filtros"
               >
-                <SlidersHorizontal className="w-5 h-5" />
-                <span className="hidden lg:inline">Limpiar</span>
+                <SlidersHorizontal className="w-4 h-4" />
+                <span className="hidden md:inline">Limpiar</span>
               </button>
+            </div>
+
+            {/* Filters row */}
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                <select
+                  value={rarity}
+                  onChange={(e) => setRarity(e.target.value as PriceCategory | '')}
+                  className="w-full appearance-none pl-3 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-xl text-[10px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[var(--wine-red)] cursor-pointer"
+                >
+                  {RARITIES.map((r) => (
+                    <option key={r.value} value={r.value}>{r.label}</option>
+                  ))}
+                </select>
+                <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs">▾</span>
+              </div>
+              <div className="relative flex-1">
+                <select
+                  value={priceIdx}
+                  onChange={(e) => setPriceIdx(Number(e.target.value))}
+                  className="w-full appearance-none pl-3 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-xl text-[10px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[var(--wine-red)] cursor-pointer"
+                >
+                  {PRICE_RANGES.map((p, i) => (
+                    <option key={i} value={i}>{p.label}</option>
+                  ))}
+                </select>
+                <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs">▾</span>
+              </div>
             </div>
           </form>
         </div>

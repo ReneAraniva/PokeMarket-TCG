@@ -4,7 +4,7 @@ export function HeroSection() {
   const navigate = useNavigate();
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--wine-red)] via-[var(--deep-red)] to-[#8B2635] py-12 md:py-24 px-4">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[var(--wine-red)] via-[var(--deep-red)] to-[#8B2635] py-8 md:py-20 px-4">
       {/* Background blurs */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div className="absolute top-20 left-20 w-40 h-40 bg-white rounded-full blur-3xl" />
@@ -36,9 +36,9 @@ export function HeroSection() {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-5 md:gap-12 items-center">
           {/* Left content */}
-          <div className="text-left space-y-6 md:space-y-8">
+          <div className="text-left space-y-4 md:space-y-8">
             <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-xl px-4 py-2 rounded-full text-white border border-white/20 shadow-lg">
               <span className="text-[var(--gold)]">✦</span>
               <span className="text-xs sm:text-sm tracking-wide">
@@ -48,53 +48,53 @@ export function HeroSection() {
 
             <div>
               <h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-2"
+                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-1"
                 style={{ fontFamily: "'Cinzel', serif" }}
               >
                 Construye tu colección
               </h1>
               <h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[var(--gold)] via-yellow-300 to-[var(--gold)] bg-clip-text text-transparent leading-tight"
+                className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[var(--gold)] via-yellow-300 to-[var(--gold)] bg-clip-text text-transparent leading-tight"
                 style={{ fontFamily: "'Cinzel', serif" }}
               >
                 de cartas legendarias
               </h1>
             </div>
 
-            <p className="text-sm sm:text-base md:text-lg text-white/80 max-w-xl leading-relaxed">
+            <p className="text-xs sm:text-base md:text-lg text-white/80 max-w-xl leading-relaxed">
               Descubre cartas exclusivas, rarezas únicas y piezas premium para
               verdaderos coleccionistas. Paga de forma segura con PayPal.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
+            <div className="flex flex-row gap-2 md:gap-4 pt-1 md:pt-2">
               <button
                 onClick={() => navigate('/cards')}
-                className="bg-[var(--gold)] hover:bg-yellow-400 text-[var(--charcoal)] px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all hover:shadow-2xl hover:scale-105 flex items-center justify-center gap-2"
+                className="flex-1 md:flex-none bg-[var(--gold)] hover:bg-yellow-400 text-[var(--charcoal)] px-4 md:px-8 py-2.5 md:py-4 rounded-xl font-bold text-sm md:text-lg transition-all hover:shadow-2xl hover:scale-105 flex items-center justify-center gap-2"
               >
                 Explorar Catálogo
               </button>
               <button
                 onClick={() => navigate('/top10')}
-                className="bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-white/20 transition-all flex items-center justify-center gap-2"
+                className="flex-1 md:flex-none bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-4 md:px-8 py-2.5 md:py-4 rounded-xl font-semibold text-sm md:text-lg hover:bg-white/20 transition-all flex items-center justify-center gap-2"
               >
                 👑 Top 10 Premium
               </button>
             </div>
 
             {/* Stats row */}
-            <div className="flex gap-5 sm:gap-8 pt-2">
+            <div className="flex gap-4 md:gap-8">
               <div>
-                <p className="text-xl sm:text-2xl font-bold text-[var(--gold)]">400+</p>
-                <p className="text-xs sm:text-sm text-white/60">Cartas disponibles</p>
+                <p className="text-lg md:text-2xl font-bold text-[var(--gold)]">400+</p>
+                <p className="text-xs md:text-sm text-white/60">Cartas disponibles</p>
               </div>
               <div>
-                <p className="text-xl sm:text-2xl font-bold text-[var(--gold)]">5</p>
-                <p className="text-xs sm:text-sm text-white/60">Niveles de rareza</p>
+                <p className="text-lg md:text-2xl font-bold text-[var(--gold)]">5</p>
+                <p className="text-xs md:text-sm text-white/60">Niveles de rareza</p>
               </div>
               <div>
-                <p className="text-xl sm:text-2xl font-bold text-[var(--gold)]">100%</p>
-                <p className="text-xs sm:text-sm text-white/60">Pago seguro</p>
+                <p className="text-lg md:text-2xl font-bold text-[var(--gold)]">100%</p>
+                <p className="text-xs md:text-sm text-white/60">Pago seguro</p>
               </div>
             </div>
           </div>
@@ -115,7 +115,7 @@ export function HeroSection() {
                     <img
                       src="https://images.unsplash.com/photo-1611931960487-4932667079f1?w=500"
                       alt="Carta Premium"
-                      className="w-48 h-64 md:w-80 md:h-[28rem] object-cover rounded-xl"
+                      className="w-36 h-48 md:w-80 md:h-[28rem] object-cover rounded-xl"
                     />
                     <div className="absolute top-4 left-4 bg-gradient-to-r from-[var(--gold)] to-yellow-300 text-[var(--charcoal)] px-3 py-1.5 rounded-full text-xs font-bold shadow-xl flex items-center space-x-1">
                       <span>★</span>

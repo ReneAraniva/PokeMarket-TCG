@@ -212,10 +212,23 @@ export function useCard(id: string) {
     let cancelled = false;
     setLoading(true);
     setNotFound(false);
+
+    // The catalog uses position-based pricing which is authoritative.
+    // Always prefer the cached priceCategory/price over the API's rarity string.
+    const cached = Object.values(cache).flat().find((c) => c.id === id) ?? null;
+
     fetchCardDetail(id).then((data) => {
       if (!cancelled) {
-        setCard(data);
-        setNotFound(!data);
+        if (data) {
+          const finalCard = cached
+            ? { ...data, priceCategory: cached.priceCategory, price: cached.price }
+            : data;
+          setCard(finalCard);
+          setNotFound(false);
+        } else {
+          setCard(cached);
+          setNotFound(!cached);
+        }
         setLoading(false);
       }
     });
