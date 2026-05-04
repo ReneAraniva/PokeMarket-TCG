@@ -2,7 +2,7 @@
 
 Plataforma de coleccionismo de cartas Pokémon TCG con catálogo real, sistema de inventario, wishlist y pago con PayPal Sandbox.
 
-## Demo en vivo
+## Deployd de PokéCards
 
 https://poketcg-market.netlify.app/
 
@@ -91,13 +91,6 @@ pnpm build
 ```
 
 ---
-
-## Enlace de la app en Netlify
-
-https://poketcg-market.netlify.app/
-
----
-
 
 ## Credenciales de prueba — PayPal Sandbox
 
