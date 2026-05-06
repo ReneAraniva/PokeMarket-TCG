@@ -162,9 +162,19 @@ export function useCards(filters: CardFilters = {}) {
       setLoading(true);
       setError(null);
       try {
-        const results = await Promise.all(SETS_TO_LOAD.map(loadSet));
+        const settled = await Promise.allSettled(SETS_TO_LOAD.map(loadSet));
+        settled.forEach((r, i) => {
+          if (r.status === 'rejected') console.error(`Set ${SETS_TO_LOAD[i]} failed:`, r.reason);
+        });
+        const results = settled
+          .filter((r): r is PromiseFulfilledResult<TCGCard[]> => r.status === 'fulfilled')
+          .map((r) => r.value);
         if (!cancelled) {
-          setAllCards(results.flatMap(sampleByRarity));
+          if (results.length === 0) {
+            setError('No se pudieron cargar las cartas. Intenta de nuevo.');
+          } else {
+            setAllCards(results.flatMap(sampleByRarity));
+          }
         }
       } catch {
         if (!cancelled) setError('No se pudieron cargar las cartas. Intenta de nuevo.');
@@ -248,9 +258,11 @@ export function useHomeCards(perCategory = 4) {
     let cancelled = false;
     async function load() {
       try {
-        const results = await Promise.all(HOME_SETS.map(loadSet));
+        const settled = await Promise.allSettled(HOME_SETS.map(loadSet));
         if (cancelled) return;
-        const all = results.flat();
+        const all = settled
+          .filter((r): r is PromiseFulfilledResult<TCGCard[]> => r.status === 'fulfilled')
+          .flatMap((r) => r.value);
         const buckets: Partial<Record<PriceCategory, TCGCard[]>> = {};
         for (const card of all) {
           const cat = card.priceCategory;
@@ -279,10 +291,11 @@ export function useTopPremiumCards(count = 10) {
     let cancelled = false;
     async function load() {
       try {
-        const results = await Promise.all(HOME_SETS.map(loadSet));
+        const settled = await Promise.allSettled(HOME_SETS.map(loadSet));
         if (cancelled) return;
-        const all = results.flat();
-        // sort by price descending, take top N
+        const all = settled
+          .filter((r): r is PromiseFulfilledResult<TCGCard[]> => r.status === 'fulfilled')
+          .flatMap((r) => r.value);
         const sorted = [...all].sort((a, b) => b.price - a.price);
         setCards(sorted.slice(0, count));
       } catch {
