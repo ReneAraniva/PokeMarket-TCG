@@ -43,7 +43,9 @@ export function translateType(type: string): string {
 
 export function cardImageUrl(base: string): string {
   if (!base) return '';
-  return `${base}/high.webp`;
+  // `high.webp` can show decode artifacts on some mobile devices/networks.
+  // `low.webp` is lighter and more stable for grid/list rendering.
+  return `${base}/low.webp`;
 }
 
 const BASE = 'https://api.tcgdex.net/v2/en';
